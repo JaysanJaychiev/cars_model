@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from cars.models import Car
+from cars.models import Car, User
 
 
 class CarListSerializer(serializers.ModelSerializer):
@@ -9,6 +9,8 @@ class CarListSerializer(serializers.ModelSerializer):
 
 
 class CarDetailSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Car
         fields = '__all__'
